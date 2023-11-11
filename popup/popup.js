@@ -7,10 +7,13 @@ var userNameList
 var activetab
 var action
 document.getElementById('followButton').addEventListener('click', function() {
-  console.log("hi")
-  action = "retweet"
-  if(action == "Follow"){
+  console.log("hi ")
+  const timeout = document.getElementById("timeout");  
+  console.log(timeout.value*1000)
+  if(followRadio.checked){
+    action = "Follow"
     const usernames = document.getElementById('twitterUsername').value;
+    
     console.log(username);
     userNameList = usernames.split(',');
     username = userNameList[index];
@@ -19,7 +22,8 @@ document.getElementById('followButton').addEventListener('click', function() {
       activeTab = tabs[0];
       chrome.tabs.update(activeTab.id, { url: twitterURL });
     })
-  }else if (action == "retweet"){
+  }else if (retweetRadio.checked){
+    action = "retweet"
     const usernames = document.getElementById('twitterUsername').value;
     userNameList = usernames.split(',');
     username = userNameList[index];
@@ -33,7 +37,7 @@ document.getElementById('followButton').addEventListener('click', function() {
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.contentScriptLoaded && username) {
         console.log("Content script has loaded.");
-        sendResponse({action:action,username:username,tweetlink:tweetUrl,like:(action === "tweet")})
+        sendResponse({action:action,username:username,tweetlink:tweetUrl,like:(action === "tweet"),timeout:(timeout.value*1000)})
     }
 });
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {

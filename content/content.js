@@ -7,14 +7,15 @@ chrome.runtime.sendMessage({ contentScriptLoaded: true },function(response){
     //   const followButton = findFollowbutton(ariaLabel)
     // console.log(followButton)
     // followButton.click()
-    waitForElm(`[aria-label="${followAriaLabel}"][role="button"]`,true).then((element)=>{
-      console.log(element)
-      element.click()
-      chrome.runtime.sendMessage({ followed: true });
+    waitForElm(`[aria-label="${followAriaLabel}"][role="button"]`,true).then((button)=>{
+      console.log(response.timeout)
+      button.click()
+      setTimeout(()=>{chrome.runtime.sendMessage({ followed: true })},response.timeout)
     })
     waitForElm(`[aria-label="${followingAriaLabel}"][role="button"]`,true).then((element)=>{
       //alreay following
-      chrome.runtime.sendMessage({ followed: true });
+      console.log()
+      setTimeout(()=>{chrome.runtime.sendMessage({ followed: true })},response.timeout)
     })
   }
   else if(response.action == "retweet"){
@@ -26,14 +27,14 @@ chrome.runtime.sendMessage({ contentScriptLoaded: true },function(response){
         const spanElement = button.querySelector("div:nth-child(2) div span");
         if(spanElement.textContent === "Repost"){
           console.log("tweeting")
-          button.click()
-          chrome.runtime.sendMessage({ retweeted: true });
+          setTimeout(()=>{button.click()},response.timeout)
+          setTimeout(()=>{chrome.runtime.sendMessage({ retweeted: true });},response.timeout)
         } else if (spanElement.textContent === "Undo repost") {
           console.log("aleady tweeted")
           //already retweeted
           var randomLocation = document.elementFromPoint(2, 2);
           randomLocation.click();
-          chrome.runtime.sendMessage({ retweeted: true });
+          setTimeout(()=>{chrome.runtime.sendMessage({ retweeted: true });},response.timeout)
         }
       })
     })
