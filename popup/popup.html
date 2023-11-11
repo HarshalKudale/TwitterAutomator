@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Twitter Auto Extension by harshalkudale</title>
+  <style>
+.login-div {
+    width: 430px;
+    height: 300px;
+    padding: 30px 35px 35px;
+    border-radius: 40px;
+    background-color: #ecf0f3;
+    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+}
+.logo {
+    background: url('../img/1200px-Purple_(01).png');
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: 0px 0px 2px #5f5f5f, 0px 0px 0px 5px #ecf0f3, 8px 8px 15px #afaaa7, -8px -8px 15px #fff;
+}
+.title {
+    text-align: center;
+    font-size: 28px;
+    padding-top: 24px;
+    letter-spacing: 0.5px;
+}
+.sub-title {
+    text-align: center;
+    font-size: 15px;
+    padding-top: 7px;
+    letter-spacing: 3px;
+}
+.fields {
+    width: 100%;
+    padding: 45px 5px 5px;
+}
+.fields input {
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 18px;
+    color: #555;
+    padding: 20px 10px 20px 5px;
+}
+.username, .password {
+    margin-bottom: 30px;
+    border-radius: 25px;
+    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+}
+.fields svg {
+    height: 22px;
+    margin: 0 10px -3px 25px;
+}
+.follow-button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    height: 60px;
+    border-radius: 30px;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+    text-align: center;
+    background-color: #02c8db;
+    box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #fff;
+    transition: all 0.5s;
+}
+.follow-button:hover {
+    background-color: #50e5b9;
+}
+/* Style the container for the radio buttons */
+.radio-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+/* Style the label for the radio buttons */
+.radio-buttons label {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* Style the radio buttons themselves */
+.radio-buttons input[type="radio"] {
+  opacity: 0; /* Hide the default radio input */
+  position: absolute;
+}
+
+/* Style the custom radio buttons (circle) */
+.radio-buttons label::before {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+/* Style the custom radio buttons when checked */
+.radio-buttons input[type="radio"]:checked + label::before {
+  background-color: #333;
+}
+
+/* Style the label text when the radio button is checked */
+.radio-buttons input[type="radio"]:checked + label {
+  color: #333;
+}
+
+  </style>
+</head>
+<body>
+  <div class="login-div">
+    <div class="title">Twitter Auto Follower</div>
+    <div class="radio-buttons">
+      <input type="radio" name="action" value="follow" id="followRadio" checked>
+      <label for="followRadio">Follow</label>
+      <input type="radio" name="action" value="retweet" id="retweetRadio">
+      <label for="retweetRadio">Retweet</label>
+    </div>
+      <div class="fields">
+        <div class="username">
+           <svg id="actionIcon" className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            <input type="username" id="twitterUsername" class="user-input" placeholder="Twitter Username/s">
+           </div>
+       </div>
+       <button class="follow-button" id="followButton" >Follow</button>
+       <span>github.com/harshalkudale</span>
+    </div>
+  <script src="popup.js"></script>
+</body>
+</html>
