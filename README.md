@@ -35,10 +35,13 @@ Step 6: Load the Unpacked Extension
 ### Usage
 Just put single or comma seperated list of usernames or tweets in the text field and hit the button. 
 eg. 
+
 Single -> elonmusk
+
 Multi -> elonmusk,Tesla
+
 Make sure extension window is on while it is doing the work. if closed it will stop the process.
 
 ### Note 
-Don't put too many usernames or tweet links or it will trigger twitter alogo.
+Don't put too many usernames or tweet links or it will trigger twitter algo.
 Don't put username and tweet links in one go
