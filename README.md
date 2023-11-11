@@ -1,6 +1,6 @@
 # TwitterAutomator . A chrome extension
 Automate Following and retweeting without API.
-
+[![Download count)](https://img.shields.io/github/downloads/HarshalKudale/TwitterAutomator/total?label=Downloads)](https://github.com/HarshalKudale/TwitterAutomator/releases/latest/)
 ### Installation
 Step 1: Download the Extension
 
