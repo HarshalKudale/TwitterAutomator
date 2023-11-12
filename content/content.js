@@ -7,12 +7,12 @@ chrome.runtime.sendMessage({ contentScriptLoaded: true },function(response){
     //   const followButton = findFollowbutton(ariaLabel)
     // console.log(followButton)
     // followButton.click()
-    waitForElm(`[aria-label="${followAriaLabel}"][role="button"]`,true).then((button)=>{
+    waitForElm(`[aria-label="${followAriaLabel}" i][role="button"]`,true).then((button)=>{
       console.log(response.timeout)
       button.click()
       setTimeout(()=>{chrome.runtime.sendMessage({ followed: true })},response.timeout)
     })
-    waitForElm(`[aria-label="${followingAriaLabel}"][role="button"]`,true).then((element)=>{
+    waitForElm(`[aria-label="${followingAriaLabel}" i][role="button"]`,true).then((element)=>{
       //alreay following
       console.log()
       setTimeout(()=>{chrome.runtime.sendMessage({ followed: true })},response.timeout)

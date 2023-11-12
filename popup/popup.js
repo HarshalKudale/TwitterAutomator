@@ -10,21 +10,23 @@ document.getElementById('followButton').addEventListener('click', function() {
   console.log("hi ")
   const timeout = document.getElementById("timeout");  
   console.log(timeout.value*1000)
+  const input = document.getElementById('twitterUsername').value;
+  const usernames = input.replace(/\s/g, '');
   if(followRadio.checked){
+    console.log("following")
+
     action = "Follow"
-    const usernames = document.getElementById('twitterUsername').value;
-    
-    console.log(username);
     userNameList = usernames.split(',');
+    userNameList = extractUsernamesFromList(userNameList)
     username = userNameList[index];
     const twitterURL = `https://twitter.com/${username}`;
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
       activeTab = tabs[0];
       chrome.tabs.update(activeTab.id, { url: twitterURL });
     })
-  }else if (retweetRadio.checked){
+  } else if (retweetRadio.checked){
+    console.log("retweeting")
     action = "retweet"
-    const usernames = document.getElementById('twitterUsername').value;
     userNameList = usernames.split(',');
     username = userNameList[index];
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
@@ -82,3 +84,16 @@ retweetRadio.addEventListener("change", function () {
     actionIcon.innerHTML = '<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z" />'
   }
 });
+
+function extractUsernamesFromList(userList) {
+  const updatedList = userList.map((input) => {
+      // Remove 'https', 'www', 'twitter', 'x', and 'com' parts
+      let cleanedInput = input.replace(/\/status\/.*/, '');
+      let username = cleanedInput.replace(/https:\/\//, '').replace(/www\./, '').replace(/twitter\.com|x\.com|www\.x\.com|mobile\.x\.com/, '').replace(/com/, '');
+      // Remove all dots and slashes
+      username = username.replace(/[./]/g, '');
+      return username;
+  });
+
+  return updatedList;
+}
